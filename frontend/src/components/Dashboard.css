@@ -1,0 +1,70 @@
+.dashboard-container {
+  padding: 20px;
+  background-color: #f0f2f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.dashboard-container p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 20px;
+  height: calc(100vh - 40px);
+}
+
+.grid-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* To ensure content respects border radius */
+}
+
+/* The right column will not be a card itself, but a container for cards */
+.grid-item.right-column-container {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.card-top,
+.card-bottom {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top {
+  flex: 1;
+}
+
+.card-bottom {
+  flex: 2;
+}
+
+.tall {
+  /* This class is no longer strictly necessary with the grid layout, 
+     but we can keep it for semantic clarity or future use. */
+} 

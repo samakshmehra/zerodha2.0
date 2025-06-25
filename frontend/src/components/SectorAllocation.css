@@ -1,0 +1,61 @@
+.sector-allocation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-title {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+}
+
+.recharts-responsive-container {
+  flex-grow: 1;
+}
+
+.custom-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-tooltip .label {
+  margin: 0;
+  font-size: 12px;
+  color: #333;
+}
+
+.doughnut-chart-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doughnut-chart-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3498db 0% 25%,
+    #2ecc71 25% 50%,
+    #f1c40f 50% 70%,
+    #e67e22 70% 85%,
+    #9b59b6 85% 100%
+  );
+}
+
+.doughnut-chart-center {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+} 

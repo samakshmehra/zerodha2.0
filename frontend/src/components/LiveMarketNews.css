@@ -1,0 +1,117 @@
+.live-market-news {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-content {
+  height: 300px; /* Or adjust as needed */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news-item {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.news-company {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.news-sentiment {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.sentiment-positive {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green */
+}
+
+.sentiment-negative {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Dark red */
+}
+
+.sentiment-neutral {
+  background-color: #e2e3e5; /* Light grey */
+  color: #383d41; /* Dark grey */
+}
+
+.news-summary {
+  margin: 0 0 8px 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.news-justification {
+  margin: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #777;
+  flex-grow: 1;
+}
+
+.news-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.news-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.news-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.loading-message, .error-message {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
+
+.news-source {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.news-error {
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+  color: #e74c3c;
+}
+
+.news-timestamp {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: right;
+  display: block;
+} 
