@@ -58,12 +58,35 @@ search_tool = Tool(
     )
 )
 
+# Advisory tool for financial advice and recommendations
+advisory_tool = Tool(
+    name="FinancialAdvisory",
+    func=TavilySearchResults(search_depth="advanced", max_results=5).run,
+    description=(
+        "Use this tool to provide personalized financial advice for Indian consumers. "
+        "When users ask for financial advice, investment recommendations, or product suggestions, "
+        "FIRST ask them to share their profile details: "
+        "1. Age (what's your age?) "
+        "2. Annual income (what's your annual income in lakhs?) "
+        "3. Financial goals (what are your financial goals - savings, insurance, investments, retirement?) "
+        "4. Current investments (what financial products do you currently have?) "
+        "5. Risk tolerance (are you conservative, moderate, or aggressive with investments?) "
+        "Once they provide this information, then search for specific advice on Indian financial products: "
+        "INSURANCE: Life Insurance (Term, Endowment, ULIP), Health Insurance, General Insurance (Motor, Home, Travel) "
+        "INVESTMENTS: Mutual Funds (Equity, Debt, Hybrid), Fixed Deposits, PPF/EPF, NPS "
+        "BANKING: Savings Accounts, Credit Cards, Personal Loans "
+        "Provide specific product recommendations with Indian providers, current rates, and features based on their profile."
+    )
+)
+
 # LLM setup with system prompt
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
     google_api_key=os.getenv("GEMINI_API_KEY"),
     # The system message is now part of the agent's prompt, not here.
 )
+
+
 
 def get_chatbot_response(user_message: str, chat_history: list = []) -> str:
     """
@@ -83,7 +106,7 @@ def get_chatbot_response(user_message: str, chat_history: list = []) -> str:
 
         # 2. Initialize a conversational agent with memory
         agent = initialize_agent(
-            tools=[stock_tool, search_tool],
+            tools=[stock_tool, search_tool, advisory_tool],
             llm=llm,
             agent="conversational-react-description",
             verbose=False,
@@ -91,9 +114,11 @@ def get_chatbot_response(user_message: str, chat_history: list = []) -> str:
             handle_parsing_errors="Check your output and make sure it conforms!",
             agent_kwargs={
                 "system_message": (
-                    "You are a helpful financial data assistant. "
+                    "You are a helpful financial data assistant and advisor. "
+                    "You can query portfolio data, provide market news, and offer financial advice. "
                     "When you use a tool, you must process its output and provide a clear, summarized answer to the user. "
                     "Never refer to information from a tool as if the user can see it. Present the key information directly. "
+                    "For advisory questions, provide actionable insights and recommendations based on current market data. "
                     "Your final answers must be plain text only. "
                     "Do not use any markdown formatting, such as backticks (`), in your responses."
                 )
@@ -134,5 +159,14 @@ if __name__ == "__main__":
     print(f"\nQ2: {q2}")
     a2 = get_chatbot_response(q2, history)
     print(f"A2: {a2}")
+
+    # Test the new advisory tool
+    history.append({"sender": "sent", "text": q2})
+    history.append({"sender": "received", "text": a2})
+    
+    q3 = "give me some investment advice for the current market"
+    print(f"\nQ3: {q3}")
+    a3 = get_chatbot_response(q3, history)
+    print(f"A3: {a3}")
 
 
